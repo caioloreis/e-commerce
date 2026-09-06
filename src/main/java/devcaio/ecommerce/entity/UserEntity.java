@@ -17,8 +17,8 @@ public class UserEntity {
     private String fullName;
 
     @OneToOne
-    @JoinColumn(name = "billing_adress_id")
-    private BillingAdressEntity billingAdress;
+    @JoinColumn(name = "billing_address_id")
+    private BillingAddressEntity billingAddress;
 
 
 
@@ -41,11 +41,12 @@ public class UserEntity {
         this.fullName = fullName;
     }
 
-    public BillingAdressEntity getBillingAdress() {
-        return billingAdress;
+    public BillingAddressEntity getBillingAddress() {
+        return billingAddress;
     }
 
-    public void setBillingAdress(BillingAdressEntity billingAdress) {
-        this.billingAdress = billingAdress;
+    public void setBillingAddress(BillingAddressEntity billingAddress) {
+        this.billingAddress = billingAddress;
     }
+
 }

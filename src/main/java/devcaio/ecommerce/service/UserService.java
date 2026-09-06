@@ -1,5 +1,7 @@
 package devcaio.ecommerce.service;
 
+import devcaio.ecommerce.dto.CreateUserDto;
+import devcaio.ecommerce.entity.BillingAddressEntity;
 import devcaio.ecommerce.entity.UserEntity;
 import devcaio.ecommerce.repository.BillingAddressRepository;
 import devcaio.ecommerce.repository.UserRepository;
@@ -16,8 +18,21 @@ public class UserService {
         this.billingAddressRepository = billingAddressRepository;
     }
 
-    public UserEntity createUser(CreateUserDto dto){
-        return null;
+    public UserEntity createUser(CreateUserDto dto) {
 
+        var billingAddress = new BillingAddressEntity();
+        billingAddress.setAddress(dto.address());
+        billingAddress.setNumber(dto.number());
+        billingAddress.setComplement(dto.complement());
+
+        var savedBillingAddress = billingAddressRepository.save(billingAddress);
+
+        var user = new UserEntity();
+        user.setFullName(dto.fullName());
+        user.setBillingAddress(savedBillingAddress);
+
+        return userRepository.save(user);
     }
+
+
 }

@@ -1,9 +1,7 @@
 package devcaio.ecommerce.repository;
 
-import devcaio.ecommerce.entity.UserEntity;
+import devcaio.ecommerce.entity.BillingAddressEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.UUID;
-
-public interface BillingAddressRepository extends JpaRepository<UserEntity, Long> {
+public interface BillingAddressRepository extends JpaRepository<BillingAddressEntity, Long> {
 }

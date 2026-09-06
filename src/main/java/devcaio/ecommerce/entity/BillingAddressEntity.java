@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 @Table (name = "tb_billing_adress")
-public class BillingAdressEntity {
+public class BillingAddressEntity {
 
 
     @Id
-    @Column (name = "billing_adress_id")
+    @Column (name = "billing_address_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long billingAdressId;
+    private long billingAddressId;
 
-    @Column (name = "adress")
+    @Column (name = "address")
     private String address;
 
     @Column (name = "number")
@@ -21,20 +21,20 @@ public class BillingAdressEntity {
     @Column (name = "complement")
     private String complement;
 
-    @OneToOne(mappedBy = "billingAdress")
+    @OneToOne(mappedBy = "billingAddress")
 
     private UserEntity user;
 
 
-    public BillingAdressEntity() {
+    public BillingAddressEntity() {
     }
 
-    public long getBillingAdressId() {
-        return billingAdressId;
+    public long getBillingAddressId() {
+        return billingAddressId;
     }
 
     public void setBillingAdressId(long billingAdressId) {
-        this.billingAdressId = billingAdressId;
+        this.billingAddressId = billingAdressId;
     }
 
     public String getAddress() {
