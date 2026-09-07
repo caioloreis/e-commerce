@@ -7,6 +7,9 @@ import devcaio.ecommerce.repository.BillingAddressRepository;
 import devcaio.ecommerce.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class UserService {
 
@@ -35,4 +38,20 @@ public class UserService {
     }
 
 
+    public Optional<UserEntity> findById(UUID userId) {
+        return userRepository.findById(userId);
+    }
+
+    public boolean deleteById(UUID userId) {
+
+        var user = userRepository.findById(userId);
+
+        if (user.isPresent()) {
+            userRepository.deleteById(userId);
+            billingAddressRepository.deleteById(user.get().getBillingAddress().getBillingAddressId());
+        }
+
+        return user.isPresent();
+
+    }
 }
