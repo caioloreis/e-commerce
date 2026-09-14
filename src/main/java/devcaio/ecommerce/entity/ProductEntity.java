@@ -33,11 +33,11 @@ public class ProductEntity {
     public ProductEntity() {
     }
 
-    public Long getProdutcId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProdutcId(Long produtcId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
