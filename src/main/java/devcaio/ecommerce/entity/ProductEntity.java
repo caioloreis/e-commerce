@@ -4,39 +4,49 @@ package devcaio.ecommerce.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
-@Table (name = "tb_prducts")
+@Table (name = "tb_products")
 public class ProductEntity {
 
     @Id
     @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long produtcId;
+    private Long productId;
 
     @Column (name = "product_name")
-    private String name;
+    private String productName;
 
     @Column (name = "price")
     private BigDecimal price;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tb_products_tags",
+            uniqueConstraints = @UniqueConstraint(columnNames = {"product_id", "tag_id"}),
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn (name = "tag_id")
+    )
+    private List<TagEntity> tags;
 
     public ProductEntity() {
     }
 
     public Long getProdutcId() {
-        return produtcId;
+        return productId;
     }
 
     public void setProdutcId(Long produtcId) {
-        this.produtcId = produtcId;
+        this.productId = productId;
     }
 
     public String getName() {
-        return name;
+        return productName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.productName = name;
     }
 
     public BigDecimal getPrice() {
@@ -45,5 +55,13 @@ public class ProductEntity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<TagEntity> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<TagEntity> tags) {
+        this.tags = tags;
     }
 }
